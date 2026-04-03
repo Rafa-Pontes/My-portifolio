@@ -1,4 +1,4 @@
-import { Header } from './components/Header/Header'
+import { Header } from './components/Header/header'
 import { Hero } from './components/Hero/hero'
 import { About } from './components/About/about'
 import { Skills } from './components/Skills/skills'
