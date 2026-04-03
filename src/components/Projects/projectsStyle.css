@@ -1,0 +1,269 @@
+/* src/components/Projects/projectsStyle.css */
+
+.projects-section {
+  padding: 6rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  /* Cria a profundidade para o efeito 3D */
+  perspective: 1500px;
+}
+
+/* ============================================
+   A Estrutura do Cartão 3D
+   ============================================ */
+
+/* O Container do Cartão - Minimalista e Fino (estilo Skills) */
+.project-card-container {
+  background-color: transparent;
+  width: 100%;
+  height: 480px; /* Altura fixa para manter o alinhamento */
+  cursor: default;
+}
+
+/* O Flipper: o elemento que realmente gira */
+.project-card-flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Transição suave */
+  transform-style: preserve-3d; /* Permite que os filhos sejam 3D */
+}
+
+/* A Classe que aciona o giro Y */
+.project-card-container.is-flipped .project-card-flipper {
+  transform: rotateY(180deg);
+}
+
+/* Base para ambas as faces (Frente e Verso) */
+.project-card-front,
+.project-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  -webkit-backface-visibility: hidden; /* Esconde o verso quando girado */
+  backface-visibility: hidden;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Estilo Ghost Design */
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s ease;
+}
+
+/* Efeito de hover na borda, igual nas Skills e Timeline */
+.project-card-container:not(.is-flipped):hover .project-card-front,
+.project-card-container.is-flipped:hover .project-card-back {
+  border-color: var(--accent-color);
+  box-shadow: 0 8px 30px rgba(168, 85, 247, 0.1);
+}
+
+/* ============================================
+   FACE FRONTAL (Visualização Limpa)
+   ============================================ */
+
+/* Imagem e Overlay */
+.project-image-wrap {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.project-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.project-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--bg-color), transparent);
+  opacity: 0.6;
+}
+
+.project-card-container:hover .project-image-wrap img {
+  transform: scale(1.08);
+}
+
+/* Informações */
+.project-info-clean {
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-info-clean h3 {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.project-info-clean p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+/* Tags de Tecnologia - Minimalistas (estilo Badges) */
+.project-techs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.tech-pill {
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  font-family: monospace;
+}
+
+.project-card-container:hover .tech-pill {
+  border-color: rgba(168, 85, 247, 0.4);
+  color: var(--accent-color);
+}
+
+/* Botões de Ação na Frente */
+.project-actions {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: auto;
+}
+
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 0;
+}
+
+.btn-link:hover {
+  color: var(--accent-color);
+}
+
+/* ============================================
+   FACE TRASEIRA (Informações Detalhadas)
+   ============================================ */
+
+.project-card-back {
+  /* Inverte o verso por padrão para ele ficar certo quando girado */
+  transform: rotateY(180deg);
+  background-color: rgba(24, 24, 27, 0.98); /* Fundo sutilmente transparente */
+  backdrop-filter: blur(5px);
+}
+
+.project-info-back {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-info-back h3 {
+  font-size: 1.15rem;
+  font-family: monospace;
+  color: var(--accent-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+
+/* Lista de Features - Minimalista */
+.project-features-list {
+  list-style: none;
+  padding: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 2;
+  margin-bottom: 2rem;
+  flex: 1;
+}
+
+.project-features-list li::before {
+  content: '>'; /* Ícone de comando no início de cada item */
+  color: var(--accent-color);
+  font-family: monospace;
+  margin-right: 0.8rem;
+  font-weight: bold;
+}
+
+/* Botões de Ação no Verso */
+.project-actions-back {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: auto;
+  align-items: center;
+}
+
+.btn-demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background-color: var(--accent-color);
+  color: #000;
+  width: 100%;
+  padding: 0.8rem 1.4rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: none;
+  transition: opacity 0.2s ease;
+}
+
+.btn-demo:hover {
+  opacity: 0.85;
+}
+
+.btn-undo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 8px;
+}
+
+.btn-undo:hover {
+  color: var(--text-primary);
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,115 @@
+
+:root {
+  --bg-color: #09090b;
+  --card-color: #18181b;
+  --accent-color: #a855f7;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth; /* Fix: scroll suave para âncoras do Header */
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Container */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Seções */
+section {
+  padding: 6rem 0;
+}
+
+/* ============================================
+   .section-title — definida UMA vez aqui
+   Removida de: skillsStyle, projectsStyle,
+   aboutStyle, experience.css
+   ============================================ */
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  height: 1px;
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-left: 1rem;
+}
+
+/* Accent */
+.accent {
+  color: var(--accent-color);
+}
+
+/* ============================================
+   Utilitários de botão compartilhados
+   ============================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: #000;
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+.btn-dark {
+  background-color: var(--card-color);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-dark:hover {
+  background-color: #2d333b;
+  border-color: var(--accent-color);
+}
